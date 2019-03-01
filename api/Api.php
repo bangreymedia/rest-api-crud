@@ -13,7 +13,7 @@ class API
 
 	function database_connection()
 	{
-		$this->connect = new PDO("mysql:host=localhost;dbname=testing", "root", "");
+		$this->connect = new PDO("mysql:host=localhost;dbname=grej7978_tes2019", "grej7978", "@inulyaqin123");
 	}
 
 	function fetch_all()
@@ -39,8 +39,8 @@ class API
 				':last_name'		=>	$_POST["last_name"]
 			);
 			$query = "
-			INSERT INTO tbl_sample 
-			(first_name, last_name) VALUES 
+			INSERT INTO tb_siswa 
+			(nama_depan, nama_belakang) VALUES 
 			(:first_name, :last_name)
 			";
 			$statement = $this->connect->prepare($query);
@@ -68,14 +68,14 @@ class API
 
 	function fetch_single($id)
 	{
-		$query = "SELECT * FROM tbl_sample WHERE id='".$id."'";
+		$query = "SELECT * FROM tb_siswa WHERE idsiswa='".$id."'";
 		$statement = $this->connect->prepare($query);
 		if($statement->execute())
 		{
 			foreach($statement->fetchAll() as $row)
 			{
-				$data['first_name'] = $row['first_name'];
-				$data['last_name'] = $row['last_name'];
+				$data['first_name'] = $row['nama_depan'];
+				$data['last_name'] = $row['nama_belakang'];
 			}
 			return $data;
 		}
@@ -91,9 +91,9 @@ class API
 				':id'			=>	$_POST['id']
 			);
 			$query = "
-			UPDATE tbl_sample 
-			SET first_name = :first_name, last_name = :last_name 
-			WHERE id = :id
+			UPDATE tb_siswa 
+			SET nama_depan = :first_name, nama_belakang = :last_name 
+			WHERE idsiswa = :id
 			";
 			$statement = $this->connect->prepare($query);
 			if($statement->execute($form_data))
@@ -119,7 +119,7 @@ class API
 	}
 	function delete($id)
 	{
-		$query = "DELETE FROM tbl_sample WHERE id = '".$id."'";
+		$query = "DELETE FROM tb_siswa WHERE idsiswa = '".$id."'";
 		$statement = $this->connect->prepare($query);
 		if($statement->execute())
 		{
