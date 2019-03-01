@@ -13,7 +13,7 @@ class API
 
 	function database_connection()
 	{
-		$this->connect = new PDO("mysql:host=localhost;dbname=grej7978_tes2019", "grej7978", "@inulyaqin123");
+		$this->connect = new PDO("mysql:host=localhost;dbname=localhost", "root", "");
 	}
 
 	function fetch_all()

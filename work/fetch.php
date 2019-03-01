@@ -2,7 +2,7 @@
 
 //fetch.php
 
-$api_url = "http://gascoding.id/rest_api_siswa/api/test_api.php?action=fetch_all";
+$api_url = "http://localhost/api/test_api.php?action=fetch_all";
 
 $client = curl_init($api_url);
 
